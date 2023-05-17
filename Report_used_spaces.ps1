@@ -1,7 +1,10 @@
-#Install-Module -Name SharePointPnPPowerShellOnline -RequiredVersion 3.2.1810.0
-#Register-PnPAzureADApp -ApplicationName "PnP App" -Tenant "duondystrybucja.onmicrosoft.com" -Interactive -Store CurrentUser
+# Install required modules
+# Install-Module SharePointPnPPowerShellOnline
+# Install-Module ExchangeOnlineManagement
+# Install-Module ImportExcel
 
 
+# Set variables
 $filename 		= '' #Complete with filename (ex. Raport_used_spaces.xlsx)
 $localPath 		= '' #Complete with local path (ex. C:\Raporty\)
 $siteUrl		= '' #Complete with Url site (ex. https://company.sharepoint.com/sites/it-dep)
@@ -11,7 +14,7 @@ $appId			= '' #Complete with ClientId (which is ID of application registered in 
 $thumbprint		= '' #Complete with Thumbprint (which is certificate thumbprint)
 
 
-#Pobranie pliku z Teams
+#Download file from SharePoint
 Connect-PnPOnline -Url $siteUrl -Tenant $tenant -ClientId $appId -Thumbprint $thumbprint
 
 Get-PnPFile -Url ($onlinePath + $filename) -Path $localPath -Filename $filename -AsFile -Force
